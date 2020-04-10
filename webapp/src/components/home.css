@@ -1,0 +1,111 @@
+body{
+	background-image: url('./backdrop/nlights.jpg');
+}
+.searchBar{
+	margin:0px auto;
+	max-width: 600px;
+	transition: all 0.8s ease 0.5s;
+}
+.search{
+    padding: 15px 20px 15px 45px;
+    border-radius: 30px;
+    font-size: 18px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    /*color: rgb(197, 197, 197);*/
+	transition: all 0.2s ease 0s;
+}
+.infoCard{
+display: flex;
+flex-wrap: wrap;
+-moz-box-pack: justify;
+justify-content: space-between;
+padding: 40px 0px;
+opacity: 1;
+position: relative;
+top: 20px;
+animation: 0.5s ease 1.4s 1 normal forwards running dhgPis;
+}
+.container{
+max-width: 1500px;
+margin: 0px auto;
+margin-top: 4em;
+height: calc(-64px + 100vh);
+width: 100%;
+position: relative;
+}
+.upperCard{
+	flex-basis: 100%;
+}
+.upperCard h2{
+	font-size: 52px;
+	margin:0;
+	text-align: left;
+	font-weight: 600;
+
+}
+.upperCard h4{
+	font-size: 26px;
+	margin:0;
+	text-align: left;
+	font-weight: 400;
+}
+.bottomLeft{
+grid-template-columns: 1fr 1fr;
+padding-right: 20px;
+flex-basis: 50%;
+display: flex;
+flex-wrap: wrap;
+}
+.data{
+	display: flex;
+	flex-basis: 100%;
+	margin-top: 3.5em;
+}
+.bottomRight{
+grid-template-columns: 1fr 1fr;
+padding-right: 20px;
+flex-basis: 50%;
+display: flex;
+flex-wrap: wrap;
+padding: 10px 0px;
+margin: 20px 0px;
+background-color: rgba(255, 255, 255, 0.2);
+border-radius: 10px;
+align-self: flex-start;
+}
+.imgbox{
+	justify-content: flex-end;
+	-moz-box-pack: end;
+	width: 50%;
+}
+.infoText{
+box-sizing: border-box;
+padding: 0;
+margin: 0;
+font-family: Montserrat,sans-serif;
+width: 50%; 
+height: 100%
+}
+.infoText h3{
+	display: block;
+	font-weight: 400;
+	font-size:110px;
+	margin-top :0.5em;
+	margin-bottom: 0;
+	text-align:left;
+}
+.infoText h4{
+	display: block;
+	font-weight: 400;
+	font-size:26px;
+	padding: 0px 0px;
+	margin: 0;
+	text-align:left;
+}
+.singleCell{
+	padding: 20px 10px;
+	flex-basis: calc(33.3333%);
+    box-sizing: border-box;
+    margin:0;
+}
