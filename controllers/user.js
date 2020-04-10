@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/user');
+const History = require('../models/history');
 const router = express.Router();
 
 router.post('/register',async(req,res)=>{
@@ -33,5 +34,16 @@ router.post('/login',async(req,res)=>{
 		return res.json(err);
 	}
 });
+
+router.post('/history',async(req,res)=>{
+	try{
+		const doc = await new History(req.body);
+		await doc.save();
+		return res.status(201).json(doc);
+	}
+	catch(err){
+		return res.send(err);
+	}
+})
 
 module.exports = router;
