@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const app = express();
+const {userController} = require('./controllers');
 
 mongoose.connect('mongodb://localhost:27017/weather',{  useNewUrlParser: true,useUnifiedTopology: true,});
 
@@ -14,7 +15,7 @@ app.use(cors());
 
 app.use(express.static('./static/'));
 
-
+app.use('/api/weather/',userController);
 
 
 module.exports = app;
