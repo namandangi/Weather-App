@@ -1,13 +1,21 @@
 const express = require('express');
 const User = require('../models/user');
 const History = require('../models/history');
+const {jwtSecret} = require('../config');
+const {authRequired} = require('../middlewares/auth');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 router.post('/register',async(req,res)=>{
 	try{
+		console.log(req.body)		
 		const user = await new User(req.body);
+		const token = await jwt.sign({ _id: user.id}, jwtSecret, { expiresIn: 86400 *365});
+		let data = req.body;
+		data.token = token;
 		await user.save()
-		return res.status(201).json(user);
+		const doc = await User.findByIdAndUpdate(user._id,{$set:data},{new:true});
+		return res.status(201).json(doc);
 	}
 	catch(err){
 		return res.json(err);
@@ -34,12 +42,14 @@ router.post('/login',async(req,res)=>{
 		return res.json(err);
 	}
 });
-
+/**
+* @api {POST} api/weather/history
+*/
 router.post('/history',async(req,res)=>{
 	try{
-		const doc = await new History(req.body);
-		await doc.save();
-		return res.status(201).json(doc);
+		// const doc = await new History(req.body);
+		// await doc.save();
+		// return res.status(201).json(doc);
 	}
 	catch(err){
 		return res.send(err);

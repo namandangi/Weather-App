@@ -2,14 +2,18 @@ const express = require('express');
 const axios = require('axios');
 const internalIp = require('internal-ip');
 const externalip = require('externalip');
+const History = require('../models/history');
+const {authRequired} = require('../middlewares/auth');
 const router = express.Router();
 
 
-router.post('/search',async (req,res)=>{
+router.post('/search',authRequired,async (req,res)=>{
 	try{
 		let cityName = req.body.city;
 		const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=8b827e90eefbdddc329b96ac3d76462b`);
 		console.log(response.data);
+		const doc = await new History(response.data);
+		await doc.save();
 		return res.json(response.data);
 	}
 	catch(err){
@@ -17,7 +21,7 @@ router.post('/search',async (req,res)=>{
 	}
 });
 
-router.post('/geolocate',async(req,res)=>{
+router.post('/geolocate',authRequired,async(req,res)=>{
 	try{
 	 	// var ip = req.ip;		
 	 	var ip = await internalIp.v4();	 	
@@ -30,6 +34,8 @@ router.post('/geolocate',async(req,res)=>{
 		let latitude = req.body.lat;
 		let longitude = req.body.long;
 		const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=8b827e90eefbdddc329b96ac3d76462b`);
+		const doc = await new History(response.data);
+		await doc.save();
 		return res.json(response.data);
 	}
 	catch(err){

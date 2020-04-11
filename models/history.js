@@ -1,14 +1,18 @@
 const mongoose = require('mongoose');
 
 var HistorySchema = mongoose.Schema({
+	user:{
+		 type: mongoose.Schema.Types.ObjectId,
+		 ref:'User'
+	},
 	coord:{
 		lon:Number,
 		lat:Number
 	},
-	weather:{
+	weather:[{
 		main:String,
 		description:String
-	},
+	}],
 	main:{
 		temp:Number,
 		feels_like:Number,
