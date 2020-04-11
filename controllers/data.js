@@ -11,9 +11,12 @@ router.post('/search',authRequired,async (req,res)=>{
 	try{
 		let cityName = req.body.city;
 		const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=8b827e90eefbdddc329b96ac3d76462b`);
-		console.log(response.data);
-		const doc = await new History(response.data);
+		//console.log(req.user);
+		const data = response.data;
+		data.user = req.user._id;
+		const doc = await new History(data);
 		await doc.save();
+		console.log(doc)
 		return res.json(response.data);
 	}
 	catch(err){

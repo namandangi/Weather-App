@@ -45,11 +45,10 @@ router.post('/login',async(req,res)=>{
 /**
 * @api {POST} api/weather/history
 */
-router.post('/history',async(req,res)=>{
+router.post('/history',authRequired,async(req,res)=>{
 	try{
-		// const doc = await new History(req.body);
-		// await doc.save();
-		// return res.status(201).json(doc);
+		const doc = await History.find({user:req.user._id});
+		return res.status(201).json(doc);
 	}
 	catch(err){
 		return res.send(err);
