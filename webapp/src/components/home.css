@@ -1,6 +1,16 @@
 body{
 	background-image: url('./backdrop/nlights.jpg');
 }
+a{	
+	font-size: 26px;
+	width: 30%;
+	margin: 20px;
+	float: left;
+}
+a:hover{
+	color: #ffa502;	
+  	text-shadow: 0 0 15px #d35400;
+}
 .searchBar{
 	margin:0px auto;
 	max-width: 600px;
