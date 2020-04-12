@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import home from './home.css';
+import  './home.css';
 import logo from '../logo.svg';
 
 import {Link} from 'react-router-dom';
@@ -58,13 +58,14 @@ export default class Home extends Component{
     //console.dir(this.props.location.state.city)		
     if(this.props.location.state!==undefined)
     await this.setState({city:this.props.location.state.city});
-		console.dir(this.state)
+		console.dir(this.state.data,this.props.location.state)
 		if(this.state.city!==''){
 			const response = await fetch('http://localhost:8000/api/weather/search',
 				{
 					method:'POST',
 					body:JSON.stringify({city:this.state.city}),
-					 headers: { 'Content-type': 'application/json' }
+					 headers: { 'Content-type': 'application/json' ,
+					 'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTkxZjMzMmU0ZDRjNjE5ZDk1MjE2OTAiLCJpYXQiOjE1ODY2MjMyODIsImV4cCI6MTU4NjcwOTY4Mn0.yfB98aximoGvJ3TyottcqMoQUsVw5I740XArJ3b9n9Y'}
 				});
 		  const content = await response.json();
 		  let temp_temp = await Math.round(Number(content.main.temp)-273);
@@ -78,16 +79,19 @@ export default class Home extends Component{
 		  let temp_sunset = await new Date(content.sys.sunset*1000).toUTCString().slice(-11,-7); 
 		  await this.setState({data:content,country:content.sys.country,temp:temp_temp,weather:temp_weather,sunrise:temp_sunrise,sunset:temp_sunset,maxt:temp_max,mint:temp_min,humidity:temp_humidty,pressure:temp_pressure,wind:temp_wind});
 		 // console.dir(response,content,this.state.data.main);
+		 //console.dir(history);
 		}
 	}
 	async componentDidUpdate(prevProps,prevState){
 		if(prevState.city!=this.state.city){
 			this.props = prevProps;
+			console.dir(this.props);
 			const response = await fetch('http://localhost:8000/api/weather/search',
 				{
 					method:'POST',
 					body:JSON.stringify({city:this.state.city}),
-					 headers: { 'Content-type': 'application/json' }
+					 headers: { 'Content-type': 'application/json' ,
+					 'Authorization': 'Bearer ' + this.props.location.state.token}
 				});
 		  let content = await response.json();
 		  content = content.name!=="Error"?content:prevState.data;
@@ -102,13 +106,13 @@ export default class Home extends Component{
 		  let temp_sunrise = await new Date(content.sys.sunrise*1000).toUTCString().slice(-11,-7);
 		  let temp_sunset = await new Date(content.sys.sunset*1000).toUTCString().slice(-11,-7); 
 		  await this.setState({data:content,country:content.sys.country,temp:temp_temp,weather:temp_weather,sunrise:temp_sunrise,sunset:temp_sunset,maxt:temp_max,mint:temp_min,humidity:temp_humidty,pressure:temp_pressure,wind:temp_wind});
-		  console.dir(this.state,this.state.data);	
+		  //console.dir(this.state,history);	
 		}
 	}
 	render(){
 		return(
 			<>
-			<Link to="/"><a href="#"> <AiOutlineLeft /> </a></Link>
+			<Link to={{pathname:"/",state:{token:this.props.location.state.token}}} ><a href="#"> <AiOutlineLeft /> </a></Link>
 			<br /><br />
 			<div className="container">
 			<form className="searchBar">

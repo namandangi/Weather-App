@@ -1,0 +1,72 @@
+.card{
+max-width: 400px;
+margin: 0px auto;
+margin-top: 4em;
+margin-bottom: 2em;
+/*height: calc(-64px + 100vh);*/
+
+width: 100%;
+position: relative;
+display: block;
+box-shadow: 12px 12px 24px 12px rgba(0, 0, 0, 0.2);
+background:rgb(255,255,255);
+
+}
+.header{
+display: flex;
+flex-wrap: wrap;
+-moz-box-pack: justify;
+justify-content: space-between;
+padding: 40px 0px;
+opacity: 1;
+position: relative;
+top: 20px;
+animation: 0.5s ease 1.4s 1 normal forwards running dhgPis;
+
+}
+.left{
+	text-align: right;
+	font-size: 20px;
+	font-weight: 200;
+	padding-left: 2.5em;
+	margin:0;
+}
+.right{
+	text-align: left;
+	font-weight: 200;
+	font-size: 20px;
+	padding-right: 2.5em;
+	margin:0;
+}
+.form{
+	padding-top: 3em;
+	padding-bottom: 5em;
+    font-size: 18px;
+	width: 100%;
+}
+.form input{
+	height:35px;
+	/*border-radius: 30px;*/
+	margin-bottom: 10px;
+}
+.card button {
+	width: 100%;	
+	background-color: #000;
+	border: none;
+	padding: 12px;
+	font-size: 20px;	
+	color: white;
+}
+.card button:hover{
+	color: #ffa502;
+	box-shadow: 0 0 15px #d35400;
+  	text-shadow: 0 0 15px #d35400;
+}	
+.btn a {
+	width: 100%;
+	background-color: #000;
+	border: none;	
+	margin:0;
+	font-size: 20px;	
+	color: white;
+}
