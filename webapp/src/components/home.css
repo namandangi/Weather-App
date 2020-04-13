@@ -3,9 +3,19 @@ body{
 }
 a{	
 	font-size: 26px;
-	width: 30%;
 	margin: 20px;
 	float: left;
+	width: 47.5%;
+}
+#bck a{
+	font-size: 26px;
+	max-width: 47.5%;
+	margin: 20px;
+	float: left;	
+}
+#history{
+	float: right;
+	max-width: 47.5%;
 }
 a:hover{
 	color: #ffa502;	

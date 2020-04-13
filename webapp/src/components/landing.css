@@ -1,4 +1,48 @@
-.container h1{
+.Navbar{
+margin: 0px auto;
+height: 5em;
+display: flex;
+}
+#logout{
+	width:5%;
+	margin-left: 0;
+	padding-left: 0;	
+}
+.Navbar a{
+font-size: 26px;
+width: 95%;
+margin: 20px;
+text-align: right;
+color:rgb(255,255,255);
+font-weight: 400;
+}
+.Navbar a:hover{
+color: #ffa502;	
+text-shadow: 0 0 15px #d35400;	
+}
+.Navbar h3{
+font-size: 26px;
+width: 90%;
+margin: 20px;
+font-weight: 400;
+padding-right: 0;
+margin-right: 0;
+text-align: right;
+color:rgb(255,255,255);
+}
+.Navbar h3:hover{
+color: #ffa502;	
+text-shadow: 0 0 15px #d35400;
+}
+.Container{
+max-width: 1500px;
+margin: 0px auto;
+margin-top: 4em;
+
+width: 100%;
+position: relative;
+}
+.Container h1{
 	font-size: 50px;
 	font-weight: 400;
 	top:20%;
@@ -11,5 +55,5 @@
 	
 }
 .searchBar input:focus{
-	margin-top: -2em;
+	/*margin-top: -2em;*/
 }
