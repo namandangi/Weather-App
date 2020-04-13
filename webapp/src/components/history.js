@@ -49,11 +49,13 @@ export default class History extends Component{
 		}
 	render(){		
 		return(
-			<>
+			<>			
 			<div id="back" style={{width:'0'}}><Link to={{pathname:"/weather",state:{name:this.props.location.state.name,city:this.props.location.state.city,token:this.props.location.state.token}}} ><a > <AiOutlineLeft /> </a></Link></div>
 			<br /><br />
+			<h1 style={{fontSize:50,fontWeight:600,color:'white'}}>HISTORY</h1>
 			{this.state.data.map((el,id)=>
 			<div className="container">
+
 			<div className="infoCard">
 				<div className="upperCard">
 					<h2>{el.name} , {el.sys.country}</h2>
