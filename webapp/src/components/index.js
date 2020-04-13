@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import Home from './home';
 import Landing from './landing';
 import LoginSignUp from './loginSignUp';
+import History from './history';
 
 import {
   BrowserRouter as Router,
@@ -19,6 +20,7 @@ export default class Index extends Component{
 				<Route exact path="/" component={Landing}></Route>
 				<Route exact path="/login" component={LoginSignUp}></Route>
 				<Route exact path="/weather" component={Home}></Route>
+				<Route exact path="/history" component={History}></Route>
 			</Switch>
 			</Router>
 			</>
