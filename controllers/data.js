@@ -13,7 +13,13 @@ router.post('/search',authRequired,async (req,res)=>{
 		const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=8b827e90eefbdddc329b96ac3d76462b`);
 		//console.log(req.user);
 		const data = response.data;
+		let date = new Date();
+		  let month = date.toLocaleString('default',{month:'long'});
+		  let day = date.toLocaleString('default',{weekday:'long'});
+		  let currdate = date.getDate();
+		  let tempDate = day+' '+currdate+' '+month;
 		data.user = req.user._id;
+		data.searchedAt = tempDate;
 		const doc = await new History(data);
 		await doc.save();
 		console.log(doc)

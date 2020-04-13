@@ -11,7 +11,8 @@ var HistorySchema = mongoose.Schema({
 	},
 	weather:[{
 		main:String,
-		description:String
+		description:String,
+		icon:String
 	}],
 	main:{
 		temp:Number,
@@ -26,11 +27,15 @@ var HistorySchema = mongoose.Schema({
 	wind:{
 		speed:Number
 	},
+	sys:{
+		country:String,
+		sunrise:Number,
+		sunset:Number
+	},
 	name:String,
 	timezone:Number,
 	searchedAt:{
-		type:Date,
-		default:Date.now
+		type:String
 	}
 });
 
