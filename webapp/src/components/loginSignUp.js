@@ -4,6 +4,7 @@ import Landing from './landing';
 import {Redirect,Link,useHistory} from 'react-router-dom';
 import DelayLink from 'react-delay-link';
 
+import {IoMdLogIn} from 'react-icons/io';
 
 export default class LoginSignUp extends Component{
 state={
@@ -108,7 +109,7 @@ submitLoginData = async(e)=>{
 		headers: { 'Content-type': 'application/json' }
 	});
 	const content = await response.json();
-	await this.setState({token:content.token,systemcall:true});
+	await this.setState({name:content.name,token:content.token,systemcall:true});
 	console.dir(this.state);
 	// e.preventDefault();
 	// console.log("entered submitLoginData")
@@ -117,16 +118,15 @@ submitLoginData = async(e)=>{
 	//console.dir("exiting submitLoginData",this.state)
 }
 submitRegisterData = async()=>{
-	// const response = await fetch('http://localhost:8000/api/weather/register',
-	// {
-	// 	method:'POST',
-	// 	body:JSON.stringify({name:this.state.name,email:this.state.email,password:this.state.password}),
-	// 	headers: { 'Content-type': 'application/json' }
-	// });
-	// const content = await response.json();
-	// await this.setState({token:content.token});
-	// console.dir(content);
-	await this.setState({systemcall:true});
+const response = await fetch('http://localhost:8000/api/weather/register',
+	{
+		method:'POST',
+		body:JSON.stringify({name:this.state.name,email:this.state.email,password:this.state.password}),
+		headers: { 'Content-type': 'application/json' }
+	});
+	const content = await response.json();
+	await this.setState({token:content.token,systemcall:true});
+	console.dir(this.state);
 }
 
 	render(){		
@@ -134,8 +134,8 @@ submitRegisterData = async()=>{
 			<>
 			<div className="card">
 				<div className="header">
-					<a className="left" href='#' onClick={this.handleLogin}>LOGIN</a>
-					<a className="right" href='#'onClick={this.handleRegister}>SIGNUP</a>
+					<a className="left"  onClick={this.handleLogin}>LOGIN</a>
+					<a className="right" onClick={this.handleRegister}>SIGNUP</a>
 				</div>
 
 {/*				{this.state.login==='true'?<Login />:<Register />}				
@@ -146,11 +146,11 @@ submitRegisterData = async()=>{
 						<input type='text' placeholder='Email' onChange={this.handleLoginEmail}/>
 					</form>
 					<form className="inputfield">
-						<input type='text' placeholder='Password' onChange={this.handleLoginPass}/>
+						<input type='password' placeholder='Password' onChange={this.handleLoginPass}/>
 					</form>					
 			</div>
 			{console.dir("systemcall :",this.state.systemcall)}
-			<div className="btn"><button type="submit" onClick={this.submitLoginData}>Login-Logo{this.state.systemcall?<Redirect delay={3000} to={{pathname:"/" ,state:{token:this.state.token}}}></Redirect>:''}</button></div></>:<><div className="form">
+			<div className="btn"><button type="submit" onClick={this.submitLoginData}><IoMdLogIn/>{this.state.systemcall&&this.state.name!=null?<Redirect delay={3000} to={{pathname:"/" ,state:{name:this.state.name,token:this.state.token}}}></Redirect>:''}</button></div></>:<><div className="form">
 					<form className="inputfield">
 						<input type='text' placeholder='Name' onChange={this.handleRegisterName} />
 					</form>
@@ -161,7 +161,8 @@ submitRegisterData = async()=>{
 						<input type='text' placeholder='Password' onChange={this.handleRegisterPass}/>
 					</form>										
 			</div>
-			<div className="btn"><Link to={{pathname:'/',state:{token:this.state.token} }}><button type="submit" onClick={this.submitRegisterData}>Register-Logo</button></Link></div>
+			{console.dir("systemcall :",this.state.systemcall)}
+			<div className="btn"><button type="submit" onClick={this.submitRegisterData}><IoMdLogIn />{this.state.systemcall?<Redirect delay={3000} to={{pathname:"/" ,state:{name:this.state.name,token:this.state.token}}}></Redirect>:''}</button></div>
 			</>}
 			</div>
 			</>

@@ -1,8 +1,8 @@
 .card{
 max-width: 400px;
 margin: 0px auto;
-margin-top: 4em;
-margin-bottom: 2em;
+margin-top: 10em;
+margin-bottom: 5em;
 /*height: calc(-64px + 100vh);*/
 
 width: 100%;
@@ -30,6 +30,7 @@ animation: 0.5s ease 1.4s 1 normal forwards running dhgPis;
 	font-weight: 200;
 	padding-left: 2.5em;
 	margin:0;
+	width: 30%;
 }
 .right{
 	text-align: left;
@@ -37,6 +38,7 @@ animation: 0.5s ease 1.4s 1 normal forwards running dhgPis;
 	font-size: 20px;
 	padding-right: 2.5em;
 	margin:0;
+	width: 30%;
 }
 .form{
 	padding-top: 3em;
