@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import Index from './components/index';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-    <Index />
+      <Index />
     </div>
   );
 }

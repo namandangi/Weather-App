@@ -8,7 +8,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link  
 } from "react-router-dom";
 
 export default class Index extends Component{
@@ -16,12 +15,12 @@ export default class Index extends Component{
 		return(
 			<>
 			<Router>
-			<Switch>                
-				<Route exact path="/" component={Landing}></Route>
-				<Route exact path="/login" component={LoginSignUp}></Route>
-				<Route exact path="/weather" component={Home}></Route>
-				<Route exact path="/history" component={History}></Route>
-			</Switch>
+				<Switch>                
+					<Route exact path="/" component={Landing} />
+					<Route exact path="/login" component={LoginSignUp} />
+					<Route exact path="/weather" component={Home} />
+					<Route exact path="/history" component={History} />
+				</Switch>
 			</Router>
 			</>
 			);
