@@ -62,7 +62,7 @@ export default class Home extends Component {
 		if(this.props.location.state !== undefined)
     	this.setState({ city: this.props.location.state.city });
 		if(this.state.city !== '') {
-			const response = await fetch('http://localhost:8000/api/weather/search',
+			const response = await fetch('/api/weather/search',
 				{
 					method:'POST',
 					body:JSON.stringify({ city: this.props.location.state.city }),
@@ -71,7 +71,7 @@ export default class Home extends Component {
 				}
 			});
 		  const content = await response.json();
-		  if(content != null) {
+		  if(content.weather) {
 		  if(content.weather[0].icon in this.iconList)
 		  	 	this.icon = this.iconList[content.weather[0].icon];
 				this.setState({ 
@@ -88,16 +88,18 @@ export default class Home extends Component {
 	updateData = async(prevProps, prevState) => {
 		if(prevState.city != this.state.city) {
 			this.props = prevProps;
-			const response = await fetch('http://localhost:8000/api/weather/search',
+			const response = await fetch('/api/weather/search',
 				{
 					method:'POST',
-					body:JSON.stringify({ city:this.state.city }),
+					body:JSON.stringify({ city: this.state.city }),
 					 headers: { 'Content-type': 'application/json' ,
 					 'Authorization': 'Bearer ' + this.props.location.state.token 
 				}
 			});
 		  let content = await response.json();
+		  console.log(content);
 		  content = prevState.data != null && content.name !== "Error" ? content: prevState.data;
+		  if(content.weather) {
 		  if(content.weather[0].icon in this.iconList)
 				this.icon = this.iconList[content.weather[0].icon];
 				this.setState({ 
@@ -107,16 +109,17 @@ export default class Home extends Component {
 					maxt: Math.round(Number(content.main.temp_max)-273), mint: Math.round(Number(content.main.temp_min)-273), humidity: content.main.humidity,
 					pressure: content.main.pressure, wind: content.wind.speed
 				});
+			}
 		}
 	}
 		
-	componentWillMount() { //change to DidMount
+	componentDidMount() {
 		this.loadData();
 	}
 	componentDidUpdate(prevProps,prevState) {
 		this.updateData(prevProps,prevState);
 	}
-	render(){
+	render() {
 		return(
 			<>
 			<div className="nav">
