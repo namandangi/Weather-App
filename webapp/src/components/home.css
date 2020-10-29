@@ -1,21 +1,37 @@
 body{
 	background-image: url('./backdrop/nlights.jpg');
 }
+.nav {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	margin: 20px;
+	/* margin-bottom: 10rem; */
+}
+.bck {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	font-size: 26px;
+	width: 80%;
+}
+.bck > a {
+	padding-right:90%;
+}
+.history{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 26px;
+	width: 20%;
+}
+.history a {
+	padding-left: 40%;
+}
 a{	
 	font-size: 26px;
-	margin: 20px;
-	float: left;
-	width: 47.5%;
-}
-#bck a{
-	font-size: 26px;
-	max-width: 47.5%;
-	margin: 20px;
-	float: left;	
-}
-#history{
-	float: right;
-	max-width: 47.5%;
+	color: white;
+	width: 100%;
 }
 a:hover{
 	color: #ffa502;	
@@ -32,27 +48,26 @@ a:hover{
     font-size: 18px;
     width: 100%;
     background-color: rgb(255, 255, 255);
-    /*color: rgb(197, 197, 197);*/
 	transition: all 0.2s ease 0s;
 }
 .infoCard{
-display: flex;
-flex-wrap: wrap;
--moz-box-pack: justify;
-justify-content: space-between;
-padding: 40px 0px;
-opacity: 1;
-position: relative;
-top: 20px;
-animation: 0.5s ease 1.4s 1 normal forwards running dhgPis;
+	display: flex;
+	flex-wrap: wrap;
+	-moz-box-pack: justify;
+	justify-content: space-between;
+	padding: 40px;
+	padding-right: 0;
+	opacity: 1;
+	position: relative;
+	animation: 0.5s ease 1.4s 1 normal forwards running dhgPis;
 }
 .container{
-max-width: 1500px;
-margin: 0px auto;
-margin-top: 4em;
-height: calc(-64px + 100vh);
-width: 100%;
-position: relative;
+	width: 100%;
+	margin: 0px auto;
+	margin-top: 15rem;
+	height: calc(-64px + 100vh);
+	width: 100%;
+	position: relative;
 }
 .upperCard{
 	flex-basis: 100%;
@@ -62,6 +77,7 @@ position: relative;
 	margin:0;
 	text-align: left;
 	font-weight: 600;
+	color: #c4c4c4;
 
 }
 .upperCard h4{
@@ -69,6 +85,7 @@ position: relative;
 	margin:0;
 	text-align: left;
 	font-weight: 400;
+	color: #e4e4e4;
 }
 .bottomLeft{
 grid-template-columns: 1fr 1fr;
@@ -79,7 +96,7 @@ flex-wrap: wrap;
 }
 .data{
 	display: flex;
-	flex-basis: 100%;
+	flex-basis: 90%;
 	margin-top: 3.5em;
 }
 .bottomRight{
@@ -111,6 +128,7 @@ height: 100%
 	display: block;
 	font-weight: 400;
 	font-size:110px;
+	color: #b3b3b3;
 	margin-top :0.5em;
 	margin-bottom: 0;
 	text-align:left;
@@ -119,8 +137,9 @@ height: 100%
 	display: block;
 	font-weight: 400;
 	font-size:26px;
+	color: #e4e4e4;
 	padding: 0px 0px;
-	margin: 0;
+	margin: 0 0 0 2rem;
 	text-align:left;
 }
 .singleCell{

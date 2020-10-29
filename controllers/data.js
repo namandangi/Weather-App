@@ -11,7 +11,7 @@ const router = express.Router();
 */
 router.post('/search',authRequired,async (req,res)=>{
 	try{
-		const { city } = req.body.city;
+		const { city } = req.body;
 		const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8b827e90eefbdddc329b96ac3d76462b`);
 		const data = response.data;
 		const date = new Date();
