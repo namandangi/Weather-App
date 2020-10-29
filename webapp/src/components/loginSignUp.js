@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { IoMdLogIn } from 'react-icons/io';
-import  './loginSignUp.css';
-// import Cookies from 'js-cookie';
+import  '../styles/loginSignUp.css';
 
 export default class LoginSignUp extends Component {
 state = {
@@ -45,7 +44,6 @@ state = {
 			headers: { 'Content-type': 'application/json' }
 		});
 		const content = await response.json();
-		// Cookies.set("token", content.token);
 		this.setState({ name: content.name, token: content.token, systemcall: true });
 	}
 	submitRegisterData = async() => {

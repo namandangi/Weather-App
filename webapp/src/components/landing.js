@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { Link }  from 'react-router-dom';
 import AlgoliaPlaces from 'algolia-places-react';
-import './landing.css';
+import '../styles/landing.css';
 
 export default class Landing extends Component {
 	state = {

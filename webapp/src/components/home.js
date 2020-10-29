@@ -22,7 +22,7 @@ import i10n from './icons/i10n.png';
 import i11n from './icons/i11n.png';
 import i13n from './icons/i13n.png';
 import i50n from './icons/i50n.png';
-import  './home.css';
+import  '../styles/home.css';
 
 export default class Home extends Component {
 	state = {
