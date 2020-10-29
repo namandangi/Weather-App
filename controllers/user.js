@@ -6,51 +6,57 @@ const {authRequired} = require('../middlewares/auth');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
-router.post('/register',async(req,res)=>{
-	try{
-		console.log(req.body)		
+/**
+* @api {GET} api/weather/register
+*/
+router.post('/register', async(req,res) => {
+	try {
 		const user = await new User(req.body);
-		const token = await jwt.sign({ _id: user.id}, jwtSecret, { expiresIn: 86400*365});
+		const token = await jwt.sign({ _id: user.id}, jwtSecret, { expiresIn: 86400*365 });
 		let data = req.body;
 		data.token = token;
 		await user.save()
 		const doc = await User.findByIdAndUpdate(user._id,{$set:data},{new:true});
 		return res.status(201).json(doc);
 	}
-	catch(err){
+	catch(err) {
 		return res.json(err);
 	}
 });
 
-router.post('/login',async(req,res)=>{
-	try{
-		const {email,password} = req.body;
-		const user = await User.findOne({email});
+/**
+* @api {GET} api/weather/login
+*/
+router.post('/login', async(req, res) => {
+	try {
+		const { email, password } = req.body;
+		const user = await User.findOne({ email });
 		if (!user) {
 	    return res.status(401).json({
 	      msg: 'User email not found.'
 	    });
 	  }	  
-	  if (password!=user.password) {
+	  if (password != user.password) {
 	    return res.status(401).json({
 	      msg: "User password didn't match."
 	    });
 	  }	  
 	  else return res.status(201).json(user);
 	}
-	catch(err){
+	catch(err) {
 		return res.json(err);
 	}
 });
+
 /**
 * @api {GET} api/weather/history
 */
-router.get('/history',authRequired,async(req,res)=>{
-	try{
-		const doc = await History.find({user:req.user._id});
+router.get('/history', authRequired, async(req,res) => {
+	try {
+		const doc = await History.find({ user: req.user._id });
 		return res.status(201).json(doc);
 	}
-	catch(err){
+	catch(err) {
 		return res.send(err);
 	}
 })
