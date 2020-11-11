@@ -9,7 +9,7 @@ const router = express.Router();
 /**
 * @api {GET} api/weather/search
 */
-router.post('/search',authRequired,async (req,res)=>{
+router.post('/search', async (req,res)=>{
 	try{
 		const { city } = req.body;
 		const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8b827e90eefbdddc329b96ac3d76462b`);
