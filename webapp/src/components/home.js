@@ -60,7 +60,7 @@ export default class Home extends Component {
 	}
 	loadData = async() => {
 		if(this.props.location.state !== undefined)
-    	this.setState({ city: this.props.location.state.city });
+		this.setState({ city: this.props.location.state.city });
 		if(this.state.city !== '') {
 			const response = await fetch('/api/weather/search',
 				{
@@ -71,6 +71,7 @@ export default class Home extends Component {
 				}
 			});
 		  const content = await response.json();
+		  console.log(content);
 		  if(content.weather) {
 		  if(content.weather[0].icon in this.iconList)
 		  	 	this.icon = this.iconList[content.weather[0].icon];
